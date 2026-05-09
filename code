@@ -1,0 +1,205 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 23, 2025 at 05:51 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.1.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `kitten_adoption_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adopters`
+--
+
+CREATE TABLE `adopters` (
+  `adopter_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adoption_requests`
+--
+
+CREATE TABLE `adoption_requests` (
+  `request_id` int(11) NOT NULL,
+  `person_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `kitten_id` int(11) NOT NULL,
+  `reason` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `adoption_requests`
+--
+
+INSERT INTO `adoption_requests` (`request_id`, `person_name`, `email`, `kitten_id`, `reason`) VALUES
+(1, 'Hruthi', 'hruthikamamidala486@gmail.com', 1, 'I want a cat for giving me company and i love cats'),
+(2, 'prathibha', 'prathibhamamidala@gmail.com', 2, 'I adore cats a lot'),
+(3, 'jyoshna', 'jyoshna@gmail.com', 4, 'i  love cats');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `breeds`
+--
+
+CREATE TABLE `breeds` (
+  `breed_id` int(11) NOT NULL,
+  `breed_name` varchar(50) NOT NULL,
+  `description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kittens`
+--
+
+CREATE TABLE `kittens` (
+  `kitten_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `age_months` int(11) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `breed_id` int(11) NOT NULL,
+  `description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kittens`
+--
+
+INSERT INTO `kittens` (`kitten_id`, `name`, `age_months`, `gender`, `breed_id`, `description`) VALUES
+(1, 'snowball', 2, 'Female', 1, 'No description'),
+(2, 'mochi', 4, 'Female', 2, 'No description'),
+(3, 'Asteroid destroyer', 4, 'Male', 3, 'No description'),
+(4, 'reeree', 3, 'Male', 4, 'No description'),
+(5, 'eagle', 4, 'Male', 5, 'No description');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kitten_vaccination`
+--
+
+CREATE TABLE `kitten_vaccination` (
+  `record_id` int(11) NOT NULL,
+  `kitten_id` int(11) NOT NULL,
+  `vaccine_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vaccinations`
+--
+
+CREATE TABLE `vaccinations` (
+  `vaccine_id` int(11) NOT NULL,
+  `vaccine_name` varchar(50) NOT NULL,
+  `description` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `adopters`
+--
+ALTER TABLE `adopters`
+  ADD PRIMARY KEY (`adopter_id`);
+
+--
+-- Indexes for table `adoption_requests`
+--
+ALTER TABLE `adoption_requests`
+  ADD PRIMARY KEY (`request_id`);
+
+--
+-- Indexes for table `breeds`
+--
+ALTER TABLE `breeds`
+  ADD PRIMARY KEY (`breed_id`);
+
+--
+-- Indexes for table `kittens`
+--
+ALTER TABLE `kittens`
+  ADD PRIMARY KEY (`kitten_id`);
+
+--
+-- Indexes for table `kitten_vaccination`
+--
+ALTER TABLE `kitten_vaccination`
+  ADD PRIMARY KEY (`record_id`);
+
+--
+-- Indexes for table `vaccinations`
+--
+ALTER TABLE `vaccinations`
+  ADD PRIMARY KEY (`vaccine_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `adopters`
+--
+ALTER TABLE `adopters`
+  MODIFY `adopter_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `adoption_requests`
+--
+ALTER TABLE `adoption_requests`
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `breeds`
+--
+ALTER TABLE `breeds`
+  MODIFY `breed_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kittens`
+--
+ALTER TABLE `kittens`
+  MODIFY `kitten_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `kitten_vaccination`
+--
+ALTER TABLE `kitten_vaccination`
+  MODIFY `record_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `vaccinations`
+--
+ALTER TABLE `vaccinations`
+  MODIFY `vaccine_id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
